@@ -25,7 +25,7 @@
 		
               <div class="col-lg-12 p-0 m-0" *ngFor="let club of clubs.data | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total }">
               
-                  <div class="card" *ngIf="compareDepartments(club?.siege?.code_insee_departement, club?.code_departement, club?.siege?.code_postal_fr)">
+                  <div class="card">
                   <h5 class="card-header text-truncate " [routerLink]="['./', club?.code]" style="cursor: pointer;">{{club?.nom}}</h5>
                   <div class="card-body">
                     <!-- <h5 class="card-title">type : {{club?.type}} | code: {{club?.code}}</h5> -->

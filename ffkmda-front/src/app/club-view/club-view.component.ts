@@ -141,7 +141,8 @@ export class ClubViewComponent implements OnInit, AfterViewInit, OnDestroy  {
     )
     .subscribe((resp) => {
       this.clubs = resp;
-      console.log(resp);
+      this.p = 1
+      this.total = resp.data.length;
       this.setLoading(false);
       this.cdr.detectChanges();
     });
@@ -303,7 +304,7 @@ formatQueryParamString(paramString: any) {
       console.log(event)
       this.cubPage = PageRequest.from(event.pageNumber, event.pageSize);
       
-      console.log("target page", this.cubPage)
+
 
       this.getSearchRequest(this.filter, this.cubPage)
       .pipe(
