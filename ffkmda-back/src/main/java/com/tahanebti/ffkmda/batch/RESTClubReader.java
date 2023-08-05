@@ -97,6 +97,7 @@ public class RESTClubReader implements ItemReader<Club> {
 			List list = (List)jsonMap.get("data");
 
 			List<Club> target = new ArrayList<>();
+			log.warn("List size to analyze to create club : {} elements",list.size());
 			for(Object item : list) {
 				Map<String,Object> ind = (Map<String,Object> ) item;
 				Map<String,Object>  listSiege = (Map<String,Object> )ind.get("siege");
@@ -140,8 +141,6 @@ public class RESTClubReader implements ItemReader<Club> {
 								.build())
 						.build();
 
-				log.info(" ------------> club : {}",club);
-
 				// STEP 2 - fix code department issues
 				try{
 					fixCodeDepartmentRelatedIssues(club);
@@ -159,6 +158,7 @@ public class RESTClubReader implements ItemReader<Club> {
 				}
 
 				target.add(club);
+				log.warn("Current position to create club : {}/{} elements",target.size(),list.size());
 			}
 
 			return target;
@@ -168,6 +168,7 @@ public class RESTClubReader implements ItemReader<Club> {
 	}
 
 	private void enrichWithAffiliationData(Club club) throws JsonProcessingException {
+		log.info("3/3 enrichWithAffiliationData {}",club.getCode());
 		String token = getAccessTokenFromExtranetFfkmda();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -284,7 +285,7 @@ public class RESTClubReader implements ItemReader<Club> {
 	 * @param club to analyze
 	 */
 	private void fixCodeDepartmentRelatedIssues(Club club) {
-		log.info("Fix code for club : {}",club.getCode());
+		log.info("2/3 fixCodeDepartmentRelatedIssues {}",club.getCode());
 		if(Strings.isNotEmpty(club.getCode_departement())){
 			if(club.getCode_departement().startsWith("0")){
 				club.setCode_departement(club.getCode_departement().substring(1));

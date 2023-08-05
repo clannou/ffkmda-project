@@ -3,8 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url:'http://pprod-club.ffkmda.fr:9008'
 };
+
+/*
+ * URL !
+ * PPROD : http://prod-club.ffkmda.fr:9008
+ * PROD : http://pprod-club.ffkmda.fr:9008
+ * LOCAL : http://localhost:9008
+ */
 
 /*
  * For easier debugging in development mode, you can import the following file
